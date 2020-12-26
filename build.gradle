@@ -41,7 +41,7 @@ list.each {
 }
 
 Person person = new Person("tutku", 28)
-Person person1 = new Person("burak", 29)
+Person person1 = new Person("burak", 30)
 
 System.out.println(person1.getName())
 System.out.println(person.getName())
