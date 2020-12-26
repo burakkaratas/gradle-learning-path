@@ -1,33 +1,25 @@
-plugins {
-    id 'java'
-}
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+//plugins {
+//    id 'java'
+//}
+//
+//group 'org.example'
+//version '1.0-SNAPSHOT'
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//}
 
 class Person {
-    private String name
-    private Integer age
+    def String name
+    def Integer age
 
     Person(String name, Integer age) {
         this.name = name
         this.age = age
-    }
-
-    def String getName() {
-        return name
-    }
-
-    def Integer getAge() {
-        return age
     }
 
     def changeName(Person person) {
@@ -43,13 +35,13 @@ list.each {
 Person person = new Person("tutku", 28)
 Person person1 = new Person("burak", 30)
 
-System.out.println(person1.getName())
-System.out.println(person.getName())
+System.out.println(person1.name)
+System.out.println(person.name)
 
 person1.changeName(person);
 
-System.out.println(person1.getName())
-System.out.println(person.getName())
+System.out.println(person1.name)
+System.out.println(person.name)
 
 
 task('hello').doLast {
@@ -60,4 +52,142 @@ task('hello').doLast {
     'tutku'.equalsIgnoreCase('TUTKU1')
 }
 
+import java.text.SimpleDateFormat
 
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd")
+simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"))
+
+println simpleDateFormat.parse("19920625")
+println simpleDateFormat.format(new Date())
+
+void sayMyLove() {
+    println "Tutku"
+}
+
+sayMyLove()
+
+static int isPossible(boolean suggest) {
+    if (suggest)
+        1
+    else
+        2
+}
+
+println isPossible(false)
+
+
+static int isMostPossible(boolean suggest) {
+    if (suggest)
+        1
+    else
+        2
+    0
+}
+
+println isMostPossible(false)
+
+static int isCheapPossible(boolean suggest) {
+    if (suggest)
+        1
+    else
+        return 2
+    0
+}
+
+println isCheapPossible(false)
+
+void changeType() {
+    def var = 1;
+    println var
+    var = "changed"
+    println var
+}
+
+changeType()
+
+def s1 = 's1'
+def s2 = "s2"
+def s3 =
+        """s3
+            s3    s3
+            more s3
+        """
+
+def slist = [s1, s2, s3]
+slist.each {
+    println it
+}
+
+def x = 4
+println 'x = $x'
+println "x = $x"
+
+def aim = "Tutku"
+println "aime ${aim.toUpperCase()}" // string interpolation
+
+def aim2 = "Tutku"
+println 'aime ${aim.toUpperCase()}' // not work
+
+Map<String, String> map = new HashMap<>();
+map.put("tutku", "burak")
+map.burak = 'tutku'
+
+println map.tutku
+println map.burak
+
+
+def clo = {}
+println clo
+
+def clos = { arg1, arg2 ->
+    println arg1
+    println arg2
+}
+
+clos('Tutku', 29)
+
+Closure closu = { var ->
+    var * 2
+}
+
+println closu(3)
+
+def closur(closure) {
+    closure() * 3
+}
+
+println closur(
+        {
+            println 'hey'
+            3
+        })
+
+
+class OwnPerson {
+    String name = "Tutku"
+
+    Closure sayName = {
+        println name
+    }
+}
+
+def p21 = new OwnPerson();
+p21.sayName()
+
+
+class OwnPerson2 {
+    String thename
+
+    OwnPerson2(String name) {
+        this.thename = name
+    }
+
+    def executeInside(Closure c) {
+        c.delegate = this
+        c()
+    }
+}
+println '2312'
+
+def p328 = new OwnPerson2("Tutku21q2");
+p328.executeInside {println thename}
